@@ -71,7 +71,13 @@ public class ClientStarter {
         // 连接到服务器
         clientChannelContext = tioClient.connect(serverNode);
         // 连上后，给服务端发条消息
-        sendMsg("你好呀，现在是" + getYmdHms());
+        long dead = 0l;
+        while (true){
+            if (System.currentTimeMillis() - dead > 3000){
+                sendMsg("你好呀，现在是" + getYmdHms());
+                dead = System.currentTimeMillis();
+            }
+        }
     }
 
     /**
